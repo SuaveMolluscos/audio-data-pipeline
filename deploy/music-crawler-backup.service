@@ -1,0 +1,8 @@
+[Unit]
+Description=Backup music crawler SQLite database
+
+[Service]
+Type=oneshot
+User=musiccrawler
+Group=musiccrawler
+ExecStart=/opt/music-crawler/deploy/backup-db.sh

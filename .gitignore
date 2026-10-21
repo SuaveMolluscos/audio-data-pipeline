@@ -152,12 +152,23 @@ activemq-data/
 # Environments
 .env
 .envrc
+.env.*
+!.env.example
 .venv
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+
+# SQLite databases and their WAL/SHM files
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
 
 # Spyder project settings
 .spyderproject

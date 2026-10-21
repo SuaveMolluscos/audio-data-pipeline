@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "audio-data-pipeline"
+version = "0.4.0"
+description = "A fault-tolerant ETL pipeline for music metadata and audio features."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+    { name = "Suave" },
+]
+keywords = [
+    "audio",
+    "data-pipeline",
+    "etl",
+    "music",
+    "sqlite",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Multimedia :: Sound/Audio",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = []
+
+[project.optional-dependencies]
+audio = [
+    "numpy>=1.24",
+    "librosa>=0.10",
+    "soundfile>=0.12",
+    "imageio-ffmpeg>=0.4",
+]
+dev = [
+    "ruff>=0.11",
+]
+
+[project.urls]
+Homepage = "https://github.com/SuaveMolluscos/audio-data-pipeline"
+Repository = "https://github.com/SuaveMolluscos/audio-data-pipeline"
+Issues = "https://github.com/SuaveMolluscos/audio-data-pipeline/issues"
+
+[project.scripts]
+audio-analyzer = "analyzer:main"
+audio-crawler = "crawler:main"
+audio-monitor = "monitor:main"
+audio-pipeline = "main:main"
+audio-seeds = "seeds:main"
+
+[tool.setuptools]
+py-modules = [
+    "analyzer",
+    "crawler",
+    "db",
+    "main",
+    "monitor",
+    "seeds",
+]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]

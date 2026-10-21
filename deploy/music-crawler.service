@@ -1,0 +1,29 @@
+[Unit]
+Description=Music metadata crawler
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=musiccrawler
+Group=musiccrawler
+WorkingDirectory=/opt/music-crawler
+EnvironmentFile=/etc/music-crawler/music-crawler.env
+EnvironmentFile=-/etc/music-crawler/runtime.env
+Environment=NUMBA_CACHE_DIR=/var/cache/music-crawler/numba
+ExecStart=/opt/music-crawler/.venv/bin/python /opt/music-crawler/crawler.py --db /var/lib/music-crawler/tracks.db --keep-alive --log-file /var/log/music-crawler/crawler.log
+Restart=always
+RestartSec=30
+TimeoutStopSec=120
+KillSignal=SIGTERM
+UMask=0077
+Environment=PYTHONUNBUFFERED=1
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/music-crawler/.venv /var/cache/music-crawler /var/lib/music-crawler /var/log/music-crawler
+
+[Install]
+WantedBy=multi-user.target
